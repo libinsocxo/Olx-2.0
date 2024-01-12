@@ -9,9 +9,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HTML 5 Boilerplate</title>
+    <script src="~/Scripts/Customscripts/knockout.js"></script>
+    <script src="https://kit.fontawesome.com/844521e4f0.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>HELLO HOME</h1>
+    <div class="sell_btn_div">
+        <button type="button" class="sell_btn_icon"><i class="fa-solid fa-plus"></i><span style="margin-left:10px">Sell</span></button>
+    </div>
+    <hr/>
+    <div class="products_main_container">
+        @Html.Partial("Card")
+    </div>
+
+
+    <script src="~/Scripts/Customscripts/Homeko.js"></script>
 </body>
+
 </html>

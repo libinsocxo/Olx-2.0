@@ -1,0 +1,18 @@
+﻿body {
+}
+.sell_btn_div {
+    display: flex;
+    justify-content: end;
+}
+
+.sell_btn_icon{
+    border-radius:50px;
+    border:none;
+    width:120px;
+    height:50px;
+    background-color:aquamarine;
+}
+
+.sell_btn_icon span{
+    font-weight:bold;
+}
