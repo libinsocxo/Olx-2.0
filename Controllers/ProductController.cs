@@ -41,7 +41,7 @@ namespace Olx2._0.Controllers
                 {
                     imageFile.CopyTo(memoryStream);
 
-                    product.imageFile = memoryStream.ToArray();
+                    product.imageFile = Convert.ToBase64String(memoryStream.ToArray());
                 }
 
             }

@@ -20,7 +20,7 @@ namespace Olx2._0.Models
 
         [BsonRepresentation(BsonType.Binary)]
         [BsonElement("imageFile")]
-        public byte[] imageFile { get; set; }
+        public string imageFile { get; set; }
 
         [BsonElement("contactNumber")]
         public string contactNumber { get; set; }
