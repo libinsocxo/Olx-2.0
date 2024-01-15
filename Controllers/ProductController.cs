@@ -27,29 +27,53 @@ namespace Olx2._0.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            if (Session["userid"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index","Login");
+            }
         }
 
         [HttpPost]
-        public ActionResult Upload(ProductModel product,IFormFile imageFile) 
+        public ActionResult Upload(ProductModel product, HttpPostedFileBase ImageFile)
         {
-            
-            if(imageFile!=null && imageFile.Length>0)
+            try
             {
-                
-                using (MemoryStream memoryStream = new MemoryStream())
+                if (ImageFile != null)
                 {
-                    imageFile.CopyTo(memoryStream);
-
-                    product.imageFile = Convert.ToBase64String(memoryStream.ToArray());
+                    string fileName = Path.GetFileName(ImageFile.FileName);
+                    string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
+                    string relativePath = Path.Combine(projectRoot, "Images");
+                    if (!Directory.Exists(relativePath))
+                    {
+                        Directory.CreateDirectory(relativePath);
+                    }
+                    string path = Path.Combine(relativePath, fileName);
+                    ImageFile.SaveAs(path);
+                    product.ImagePath = path;
+                }
+                else
+                {
+                    ImageFile.SaveAs("");
+                    product.ImagePath = "";
                 }
 
+                productcollection.InsertOne(product);
+
+                TempData["AlertMessage"] = "The Product Added Successfully!";
+
+                return RedirectToAction("Index");
             }
+            catch
+            {
+                TempData["ErrorMessage"] = "Error occured while adding a product!";
+                return RedirectToAction("Index");
+            }
+            
 
-            productcollection.InsertOne(product);
-
-
-            return RedirectToAction("Index");
         }
     }
 }

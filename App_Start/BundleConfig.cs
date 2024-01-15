@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using System.Web.Optimization;
 
 namespace Olx2._0
@@ -22,11 +23,27 @@ namespace Olx2._0
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
+            bundles.IgnoreList.Clear();
+
+            AddDefaultIgnorePatterns(bundles.IgnoreList);
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/Login/login.css",
                       "~/Content/Home/home.css"));
+        }
+
+        private static void AddDefaultIgnorePatterns(IgnoreList ignoreList)
+        {
+            if (ignoreList == null)
+            {
+                throw new ArgumentNullException(nameof(ignoreList));
+            }
+
+            ignoreList.Ignore("*.intellisense.js");
+            ignoreList.Ignore("*-vsdoc.js");
+            ignoreList.Ignore("*.debug.js", OptimizationMode.WhenEnabled);
         }
     }
 }

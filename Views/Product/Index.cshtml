@@ -16,11 +16,12 @@
 
 </head>
 <body>
-    <div class="product-form">
-        <h2>Product Form</h2>
-        @using (Html.BeginForm("Upload","Product",FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            
+    <div style="display:flex;justify-content:center">
+        <div class="product-form">
+            <h2>Product Form</h2>
+            @using (Html.BeginForm("Upload", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
                 <label for="productName">Product Name:</label>
                 <input type="text" id="productName" name="productName" required>
 
@@ -28,7 +29,7 @@
                 <input type="text" id="productDescription" name="productDescription" required>
 
                 <label for="productImage">Product Image:</label>
-                <input type="file" id="productImage" name="imageFile" accept="image/*" required>
+                <input type="file" id="productImage" name="ImageFile" required>
 
                 <label for="contactNumber">Contact Number:</label>
                 <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" placeholder="e.g., 1234567890" required>
@@ -37,10 +38,29 @@
                 <input type="email" id="userEmail" name="userEmail" required>
 
                 <button type="submit">Submit</button>
-    
-        }
 
+            }
+
+        </div>
     </div>
+    @if (TempData["AlertMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> @TempData["AlertMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+
+
 </body>
 
 </html>
