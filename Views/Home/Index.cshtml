@@ -14,34 +14,33 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="sell_btn_div">
-        <button type="button" class="sell_btn_icon" href="@Url.Action("Index","Product")"><i class="fa-solid fa-plus"></i><span style="margin-left:10px">Sell</span></button>
-    </div>
-    <hr/>
+        <div class="sell_btn_div">
+                <button type="button" class="sell_btn_icon" onclick="window.location.href='@Url.Action("Index", "Product")'">
+                    <i class="fa-solid fa-plus"></i>
+                    <span style="margin-left:10px">Sell</span>
+                </button>
+        </div>
+    <hr />
     <div class="products_main_container" style="display:flex">
-        @*@foreach (var pro in Model)
+
+
+        @if (TempData["Emptydata"] != null)
         {
-            try
-                {
-                 @Html.Partial("Card",pro)
-                }
-            catch
-                {
-
-                }
-
-        }*@
+            <div class="alert alert-danger" role="alert" style="display:flex;justify-content:center;width:100%">
+                @TempData["Emptydata"]
+            </div>
+        }
 
         @foreach (var pro in Model)
         {
             <div class="card" style="width: 18rem;margin:10px">
-                <img src="@pro.ImagePath" class="card-img-top" alt="...">
+                <img src="~/Uploads/@pro.ImageFile" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">@pro.productName</h5>
                     <a href="#" class="btn btn-primary">View</a>
                 </div>
             </div>
-         }
+        }
 
     </div>
 

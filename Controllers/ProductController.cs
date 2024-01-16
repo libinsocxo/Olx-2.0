@@ -2,6 +2,7 @@
 using MongoDB.Driver;
 using Olx2._0.App_Start;
 using Olx2._0.Models;
+using SharpCompress.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -44,21 +45,32 @@ namespace Olx2._0.Controllers
             {
                 if (ImageFile != null)
                 {
+
                     string fileName = Path.GetFileName(ImageFile.FileName);
                     string projectRoot = AppDomain.CurrentDomain.BaseDirectory;
-                    string relativePath = Path.Combine(projectRoot, "Images");
+                    string relativePath = Path.Combine(projectRoot, "Uploads");
                     if (!Directory.Exists(relativePath))
                     {
                         Directory.CreateDirectory(relativePath);
                     }
+        
                     string path = Path.Combine(relativePath, fileName);
-                    ImageFile.SaveAs(path);
-                    product.ImagePath = path;
+                   
+                    if (!System.IO.File.Exists(path))
+                    {
+                        ImageFile.SaveAs(path);
+                        product.ImageFile = fileName;
+                    }
+                    else
+                    {
+                        TempData["Imagenameexists"] = "Please change the file name!";
+                        return RedirectToAction("Index");
+                    }
                 }
                 else
                 {
-                    ImageFile.SaveAs("");
-                    product.ImagePath = "";
+                    product.ImageFile = "";
+
                 }
 
                 productcollection.InsertOne(product);

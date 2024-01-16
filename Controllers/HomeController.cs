@@ -26,8 +26,7 @@ namespace Olx2._0.Controllers
 
         public ActionResult Index()
         {
-            //try
-            //{
+      
             if (Session["userid"] != null)
             {
                 //List<ProductModel> products = productcollection.AsQueryable().ToList();
@@ -40,33 +39,17 @@ namespace Olx2._0.Controllers
                 }
                 else
                 {
-                    return View();
+                    return View(products);
                 }
                
             }
             else
             {
+                TempData["Emptydata"] = "No Products Yet!";
+
                 return RedirectToAction("Index", "Login");
             }
-                //if (products.Count > 0)
-                //    {
-                //        return View(products);
-                //    }
-                //    else
-                //    {
-                //        return View();
-                //    }
-                   
-                //}
-                //else
-                //{
-                //    return RedirectToAction("Index","Login");
-                //}
-            //}
-            //catch
-            //{
-            //    return RedirectToAction("Index", "Login");
-            //}
+               
 
             
         }

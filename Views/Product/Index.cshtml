@@ -28,8 +28,8 @@
                 <label for="productDescription">Product Description:</label>
                 <input type="text" id="productDescription" name="productDescription" required>
 
-                <label for="productImage">Product Image:</label>
-                <input type="file" id="productImage" name="ImageFile" required>
+                <label for="ImageFile">Product Image:</label>
+                <input type="file" id="ImageFile" name="ImageFile" required>
 
                 <label for="contactNumber">Contact Number:</label>
                 <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" placeholder="e.g., 1234567890" required>
@@ -54,7 +54,15 @@
     @if (TempData["ErrorMessage"] != null)
     {
         <div class="alert alert-danger alert-dismissible alert-dismissible fade show" role="alert">
-            <strong>Success!</strong> @TempData["ErrorMessage"]
+            <strong>Error!</strong> @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (TempData["Imagenameexists"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> @TempData["Imagenameexists"]
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }

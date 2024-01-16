@@ -18,8 +18,8 @@ namespace Olx2._0.Models
         [BsonElement("productDescription")]
         public string productDescription { get; set; }
 
-        [BsonElement("imagepath")]
-        public string ImagePath { get; set; }
+        [BsonElement("imagefile")]
+        public string ImageFile { get; set; }
 
         [BsonElement("contactNumber")]
         public string contactNumber { get; set; }
