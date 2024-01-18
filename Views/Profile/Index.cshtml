@@ -1,0 +1,179 @@
+﻿@*@{
+        ViewBag.Title = "Index";
+    }*@
+
+
+
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px;
+        }
+
+        .profile {
+            width: 40%;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .product-details {
+            width: 40%;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        @foreach (var user in Model.User)
+        {
+            <div class="profile">
+                <h2>User Profile</h2>
+                <label for="username">Username:</label>
+                <p id="username">@user.UserName</p>
+
+                <label for="email">Email:</label>
+                <p id="email">@user.Email</p>
+
+                <label for="location">Location:</label>
+                <p id="location">@user.Location</p>
+            </div>
+        }
+        <div style="overflow-y:scroll;margin-left:300px">
+            @foreach (var pro in Model.Products)
+            {
+                <div class="product-details">
+                    <h2>Product Details</h2>
+                    <label for="product-name">Product Name:</label>
+                    <p id="product-name">@pro.productName</p>
+
+                    <label for="price">Price:</label>
+                    <p id="price">$99.99</p>
+
+                    <label for="description">Description:</label>
+                    <p id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vestibulum, justo sit amet sodales finibus, nunc arcu finibus leo, non rutrum orci metus nec dui.</p>
+                </div>
+            }
+        </div>
+
+
+    </div>
+
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        #user-profile {
+            width: 30%;
+            margin-right: 20px;
+        }
+
+        #user-products {
+            width: 60%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .product-card {
+            width: 200px;
+            margin: 10px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+            .product-card button {
+                margin-top: 10px;
+                padding: 5px;
+            }
+    </style>
+</head>
+<body>
+
+    <div id="user-profile">
+        <h2>User Profile</h2>
+        <p><strong>Name:</strong> John Doe</p>
+        <p><strong>Email:</strong> john.doe@example.com</p>
+        <!-- Add more user profile information as needed -->
+    </div>
+
+    <div id="user-products">
+        <div class="product-card">
+            <h3>Product 1</h3>
+            <p>Description of Product 1.</p>
+            <button onclick="editProduct('product1')">Edit</button>
+            <button onclick="deleteProduct('product1')">Delete</button>
+        </div>
+
+        <div class="product-card">
+            <h3>Product 2</h3>
+            <p>Description of Product 2.</p>
+            <button onclick="editProduct('product2')">Edit</button>
+            <button onclick="deleteProduct('product2')">Delete</button>
+        </div>
+
+        <!-- Add more product cards dynamically based on user's products -->
+
+    </div>
+
+    <script>
+        function editProduct(productId) {
+            // Implement your edit logic here
+            alert('Edit product with ID: ' + productId);
+        }
+
+        function deleteProduct(productId) {
+            // Implement your delete logic here
+            alert('Delete product with ID: ' + productId);
+        }
+    </script>
+
+</body>
+</html>
+

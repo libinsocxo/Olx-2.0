@@ -22,8 +22,20 @@
         @using (Html.BeginForm("signup", "Signup", FormMethod.Post))
         {
             <form action="your-signup-action" method="post">
+
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
+
+                <label for="Email">Email:</label>
+                <input type="text" id="email" name="email" required>
+
+
+                <label for="MobNum">MobileNumber:</label>
+                <input type="text" id="MobNum" name="MobNum" required>
+
+
+                <label for="Location">Location:</label>
+                <input type="text" id="Location" name="Location" required>
 
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>

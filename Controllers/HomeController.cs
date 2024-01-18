@@ -29,7 +29,6 @@ namespace Olx2._0.Controllers
       
             if (Session["userid"] != null)
             {
-                //List<ProductModel> products = productcollection.AsQueryable().ToList();
                 
                 var filter = Builders<ProductModel>.Filter.Empty;
                 var products = productcollection.Find(filter).ToList();
@@ -39,14 +38,14 @@ namespace Olx2._0.Controllers
                 }
                 else
                 {
+                    TempData["Emptydata"] = "No Products Yet!";
+
                     return View(products);
                 }
                
             }
             else
             {
-                TempData["Emptydata"] = "No Products Yet!";
-
                 return RedirectToAction("Index", "Login");
             }
                

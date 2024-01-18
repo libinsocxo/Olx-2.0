@@ -12,6 +12,9 @@ namespace Olx2._0.Models
         [BsonId]
         public ObjectId Id { get; set; }
 
+        [BsonElement("userid")]
+        public string userid { get; set; }
+
         [BsonElement("productName")]
         public string productName { get; set; }
 

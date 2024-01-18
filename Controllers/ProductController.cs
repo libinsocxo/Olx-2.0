@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using Olx2._0.App_Start;
 using Olx2._0.Models;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 
 namespace Olx2._0.Controllers
@@ -18,12 +20,14 @@ namespace Olx2._0.Controllers
 
         private IMongoCollection<ProductModel> productcollection;
 
+        private IMongoCollection<AuthModel> usercollection;
+
 
         public ProductController()
         {
            _dbcontext = new MongoDBContext();
             productcollection = _dbcontext.database.GetCollection<ProductModel>("products");
-            
+            usercollection = _dbcontext.database.GetCollection<AuthModel>("UserAuth");
         }
 
         public ActionResult Index()
@@ -58,8 +62,9 @@ namespace Olx2._0.Controllers
                    
                     if (!System.IO.File.Exists(path))
                     {
-                        ImageFile.SaveAs(path);
+                        ImageFile.SaveAs(path);                       
                         product.ImageFile = fileName;
+                  
                     }
                     else
                     {
@@ -72,6 +77,17 @@ namespace Olx2._0.Controllers
                     product.ImageFile = "";
 
                 }
+                if (Session["userid"] != null)
+                {
+                    var username = Session["userid"];
+                    var user = Builders<AuthModel>.Filter.Eq("UserName", username);
+                    var userdata = usercollection.Find(user).ToList();
+                    foreach (var item in userdata)
+                    {
+                        product.userid = item.Id.ToString();
+                    }
+                }
+
 
                 productcollection.InsertOne(product);
 
