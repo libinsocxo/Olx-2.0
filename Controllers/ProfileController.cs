@@ -49,12 +49,20 @@ namespace Olx2._0.Controllers
 
                 var userproducts = Builders<ProductModel>.Filter.Eq("userid", userid);
                 var products = _productcollection.Find(userproducts).ToList();
+
                 var myviewmodel = new MyviewModel
                 {
                     User = userdata,
                     Products = products,
-                    
+
                 };
+
+                if (products.Count == 0)
+                {
+
+                    TempData["emptyproducts"] = "Please add some Products!";
+                    return View(myviewmodel);
+                }
 
                 return View(myviewmodel);
 
@@ -66,6 +74,14 @@ namespace Olx2._0.Controllers
 
 
            
+        }
+
+        [HttpPost]
+        public ActionResult UpdateProfile(AuthModel usermodel)
+        {
+
+            
+            return View();
         }
 
     }

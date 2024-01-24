@@ -29,5 +29,8 @@ namespace Olx2._0.Models
 
         [BsonElement("userEmail")]
         public string userEmail { get; set; }
+
+        [BsonElement("Price")]
+        public float Price { get; set; }
     }
 }

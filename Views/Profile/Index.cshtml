@@ -1,178 +1,246 @@
-﻿@*@{
-        ViewBag.Title = "Index";
-    }*@
-
-
-
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        .container {
-            display: flex;
-            justify-content: space-around;
-            margin: 20px;
-        }
-
-        .profile {
-            width: 40%;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        .product-details {
-            width: 40%;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        h2 {
-            color: #333;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-        }
-
-        p {
-            margin: 0;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        @foreach (var user in Model.User)
-        {
-            <div class="profile">
-                <h2>User Profile</h2>
-                <label for="username">Username:</label>
-                <p id="username">@user.UserName</p>
-
-                <label for="email">Email:</label>
-                <p id="email">@user.Email</p>
-
-                <label for="location">Location:</label>
-                <p id="location">@user.Location</p>
-            </div>
-        }
-        <div style="overflow-y:scroll;margin-left:300px">
-            @foreach (var pro in Model.Products)
-            {
-                <div class="product-details">
-                    <h2>Product Details</h2>
-                    <label for="product-name">Product Name:</label>
-                    <p id="product-name">@pro.productName</p>
-
-                    <label for="price">Price:</label>
-                    <p id="price">$99.99</p>
-
-                    <label for="description">Description:</label>
-                    <p id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vestibulum, justo sit amet sodales finibus, nunc arcu finibus leo, non rutrum orci metus nec dui.</p>
-                </div>
-            }
-        </div>
-
-
-    </div>
-
-</body>
-</html>-->
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
+    <title>best dealer</title>
+    <script src="https://kit.fontawesome.com/844521e4f0.js" crossorigin="anonymous"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        main {
+            min-height: calc(100vh - 56px - 122px);
+        }
+
+        .not-visible {
+            display: none;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+
+
+        .container {
+        }
+
+        .glass {
             display: flex;
-            justify-content: space-between;
-            padding: 20px;
+            align-items: center;
+            justify-content: center;
         }
 
-        #user-profile {
-            width: 30%;
-            margin-right: 20px;
+        .profile {
+            background: white;
+            margin-top: 1rem;
+            width: 100%;
+            border-radius: 30px;
+            background: linear-gradient( to right bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3) );
         }
 
-        #user-products {
-            width: 60%;
+        .card {
+            border-radius: 20px;
+            margin: 1rem;
+            background: linear-gradient( to right bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3) );
+            box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.212);
+        }
+
+        .fa-trash-alt {
+            color: red;
+        }
+
+
+        .card-body {
+            background-color: white;
+        }
+
+        .card-shadow {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2)
+        }
+
+        .not-visible {
+            display: none;
+        }
+
+        .card-body1 {
+            /* background-color: white;
+        */
+            border: 2px solid;
+        }
+
+        .addbtn {
+            padding-left: 80%;
+        }
+
+        main {
+            min-height: calc(100vh - 56px - 82px);
+        }
+
+        .search {
+            color: white;
+        }
+
+        .profile_inputfield {
+            border: none;
+        }
+
+        #updatebtn {
+            display: none;
+        }
+
+        .profile_update_icons {
             display: flex;
-            flex-wrap: wrap;
+            align-items: center;
         }
-
-        .product-card {
-            width: 200px;
-            margin: 10px;
-            padding: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-            .product-card button {
-                margin-top: 10px;
-                padding: 5px;
-            }
     </style>
 </head>
 <body>
 
-    <div id="user-profile">
-        <h2>User Profile</h2>
-        <p><strong>Name:</strong> John Doe</p>
-        <p><strong>Email:</strong> john.doe@example.com</p>
-        <!-- Add more user profile information as needed -->
-    </div>
+    <main>
+        @if (TempData["Updatemessage"] != null)
+        {
+            <div class="alert alert-success alert-dismissible alert-dismissible fade show" role="alert">
+                <strong>Success!</strong> @TempData["Updatemessage"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        <div class="glass">
+            <div class="profile">
 
-    <div id="user-products">
-        <div class="product-card">
-            <h3>Product 1</h3>
-            <p>Description of Product 1.</p>
-            <button onclick="editProduct('product1')">Edit</button>
-            <button onclick="deleteProduct('product1')">Delete</button>
+                <div class="user">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 col-12">
+
+                                <div class="class" id="image-box">
+
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6596/6596121.png"
+                                         class="card-img-top"
+                                         alt=""
+                                         style="width: 100px; height: 100px" />
+
+                                </div>
+
+
+
+                                <div class="container">
+                                    <div id="progress-bar" class="not-visible">
+
+                                    </div>
+
+                                    <div id="cancel-box" class="not-visible">
+                                        <button class="btn btn-danger" id="cancel-btn">Cancel</button>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    @foreach (var user in Model.User)
+                                    {
+                                        using (Html.BeginForm("UpdateProfile", "Profile", FormMethod.Post))
+                                        {
+                                            <p>username: <input name="UserName" value="@user.UserName" class="profile_inputfield" readonly /></p>
+                                            <p>Email: <input name="Email" value="@user.Email" class="profile_inputfield" readonly /></p>
+                                            <p>Phone: <input name="MobNum" value="@user.MobNum" class="profile_inputfield" readonly /></p>
+                                          
+                                            <div class="profile_update_icons">
+                                                <p>
+                                                    Location: <input name="Location" value="@user.Location" class="profile_inputfield" readonly />
+                                                    <i onclick="Editprofile()" class="fa-regular fa-pen-to-square"></i>
+
+                                                </p>
+                                                <button type="submit" class="btn btn-success" style="margin-left:10px" id="updatebtn">Update</button>
+                                            </div>
+                                        }
+                                    }
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div id="alert-box">
+            </div>
         </div>
 
-        <div class="product-card">
-            <h3>Product 2</h3>
-            <p>Description of Product 2.</p>
-            <button onclick="editProduct('product2')">Edit</button>
-            <button onclick="deleteProduct('product2')">Delete</button>
+        <!-- product title -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-12 mt-2">
+                    <strong>Your Products</strong><hr>
+                </div>
+            </div>
+        </div>
+        <!--   DISPLAYING PRODUCTS -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-12">
+                    <div class="pro">
+                        @if (TempData["emptyproducts"] != null)
+                        {
+                            <div class="alert alert-danger alert-dismissible alert-dismissible fade show" role="alert">
+                                <strong> @TempData["emptyproducts"]</strong>
+
+                            </div>
+                        }
+                        @foreach (var detail in Model.Products)
+                        {
+                            <div class="card">
+                                <img src="~/Uploads/@detail.ImageFile" alt="" height="150" width="150" />
+                                <div class="card-info">
+
+                                    <h2 class="m-2">@detail.productName</h2>
+                                    <p class="m-2">@detail.productDescription</p>
+
+                                    <div class="btn">
+                                        <a href="@Url.Action("Index", "ProductEdit", new { id = detail.Id })">
+                                            <i class="fas fa-edit m-2"></i>
+                                        </a>
+                                        <a href="javascript:void(0);" onclick="confirmAndRedirect('@Url.Action("Index", "Delete", new { id = detail.Id })')">
+                                            <i class="fas fa-trash-alt m-3"></i>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Add more product cards dynamically based on user's products -->
-
-    </div>
+    </main>
 
     <script>
-        function editProduct(productId) {
-            // Implement your edit logic here
-            alert('Edit product with ID: ' + productId);
+        function confirmAndRedirect(url) {
+            var confirmation = window.confirm("Are you sure you want to delete?");
+            if (confirmation) {
+                window.location.href = url;
+            }
         }
 
-        function deleteProduct(productId) {
-            // Implement your delete logic here
-            alert('Delete product with ID: ' + productId);
+        function Editprofile() {
+            var profileInputs = document.querySelectorAll(".profile_inputfield");
+            profileInputs.forEach(function (input) {
+                input.removeAttribute("readonly");
+                input.style.border = "1px solid #ccc";
+
+            });
+            var update_btn = document.getElementById("updatebtn");
+            update_btn.style.display = "block";
+
         }
     </script>
+
 
 </body>
 </html>

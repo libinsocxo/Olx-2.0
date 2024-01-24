@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Product Review</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+            }
+
+            header {
+                background-color: #333;
+                color: #fff;
+                text-align: center;
+                padding: 1em 0;
+            }
+
+            .product-container {
+                max-width: 800px;
+                margin: 20px auto;
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .product-image {
+                max-width: 100%;
+                height: auto;
+                margin-bottom: 20px;
+            }
+
+            .product-title {
+                font-size: 1.5em;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            .product-description {
+                margin-bottom: 20px;
+            }
+
+            .product-details {
+                font-size: 1.1em;
+            }
+
+            footer {
+                background-color: #333;
+                color: #fff;
+                text-align: center;
+                padding: 1em 0;
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+
+        <header>
+            <h1>Product Review</h1>
+        </header>
+        @foreach (var pro in Model)
+        {
+            <div class="product-container">
+                <img class="product-image" src="~/Uploads/@pro.ImageFile" width="300" height="300" alt="Product Image">
+                <h2 class="product-title">@pro.productName</h2>
+                <p class="product-description">
+                    @pro.productDescription
+                </p>
+                <div class="product-details">
+                    <p><strong>Price:</strong> @pro.Price</p>
+                    <p><strong>Email:</strong>@pro.userEmail</p>
+                    <p><strong>Mobile Number:</strong>@pro.contactNumber</p>
+                </div>
+            </div>
+        }
+
+
+        @*<footer>
+            &copy; 2024 Product Review Page
+        </footer>*@
+
+    </body>
+    </html>
+

@@ -34,10 +34,11 @@
         @foreach (var pro in Model)
         {
             <div class="card" style="width: 18rem;margin:10px">
-                <img src="~/Uploads/@pro.ImageFile" class="card-img-top" alt="...">
-                <div class="card-body">
+                <img src="~/Uploads/@pro.ImageFile" height="300" width="300"  class="card-img-top" alt="...">
+                <div class="card-body" style="display:flex;flex-direction:column">
                     <h5 class="card-title">@pro.productName</h5>
-                    <a href="#" class="btn btn-primary">View</a>
+                    <span>&#8377 @pro.Price</span>
+                    <a href="@Url.Action("Index", "Productview", new { id = pro.Id })" class="btn btn-primary" style="margin-top:10px">View</a>
                 </div>
             </div>
         }
