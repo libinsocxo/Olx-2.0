@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Views",
+    "\\Views\\Product"
   ],
-  "SelectedNode": "\\Olx2.0.sln",
+  "SelectedNode": "\\Views\\Product\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }

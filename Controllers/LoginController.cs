@@ -47,6 +47,7 @@ namespace Olx2._0.Controllers
             }
             else
             {
+                TempData["loginError"] = "Login credentials are incorrect!";
                 return RedirectToAction("index");
             }
 

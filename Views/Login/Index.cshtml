@@ -30,6 +30,10 @@
             <input type="password" id="password" data-bind="value:password" name="password" required>
 
             <button type="submit">Login</button>
+            @if (TempData["loginError"] != null)
+            {
+                    <span style="color:red">@TempData["loginError"]</span> 
+            }
         </form>
 
         }
